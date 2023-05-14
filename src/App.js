@@ -8,7 +8,8 @@ import VideoDetails from "./components/VideoDetails"
 
 import {AppContext} from "./context/contextAPI"
 const App = () => {
-  return <AppContext>
+  return (
+      <AppContext>
        <BrowserRouter>
         <div className='flex flex-col h-full'>
           <Header/>
@@ -20,6 +21,6 @@ const App = () => {
         </div>
        </BrowserRouter>
       </AppContext>
-
+  )
 }
 export default App;

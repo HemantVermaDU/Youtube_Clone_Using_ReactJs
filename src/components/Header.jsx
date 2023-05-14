@@ -1,14 +1,15 @@
 import React ,{useContext ,useState} from 'react'
 import {Link , useLocation , useNavigate} from "react-router-dom"
-
 import ytLogo from "../images/yt-logo.png"
 import ytLogoMobile from "../images/yt-logo-mobile.png"
 
 import {SlMenu} from "react-icons/sl"
 import {IoIosSearch} from "react-icons/io"
 import {RiVideoAddLine} from "react-icons/ri"
-import {FiBell} from "react-icons/fi"
+import {BiUserCircle} from "react-icons/bi"
 import {CgClose} from "react-icons/cg"
+import {MdKeyboardVoice} from "react-icons/md"
+import {BsThreeDotsVertical} from "react-icons/bs"
 
 import {Context} from "../context/contextAPI"
 import Loader from "../shared/loader"
@@ -24,11 +25,11 @@ const Header = () => {
     if((event?.key === "Enter" || event === "searchButton") && searchQuery?.length>0){
       navigate(`/searchResult/${searchQuery}`);
     }
-  }
+  };
 
-  const mobileMenuToggle = () =>{
+  const mobileMenuToggle = () => {
     setMobileMenu(!mobileMenu);
-  }
+  };
 
   const {pathname} = useLocation();
   const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
@@ -42,7 +43,8 @@ const Header = () => {
           <div className='flex md:hidden md:mr-6 cursor-pointer items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]'
            onClick={mobileMenuToggle}>
 
-           {mobileMenu ? (<CgClose className='text-white text-xl'/>) : (<SlMenu className='text-white text-xl'/>
+           {mobileMenu ? (
+            <CgClose className='text-white text-xl'/>) : (<SlMenu className='text-white text-xl'/>
            )}
            </div>
         )}
@@ -67,28 +69,29 @@ const Header = () => {
              onChange={(e) => setSearchQuery(e.target.value)}
               onKeyUp={searchQueryHandler}
               value={searchQuery}
+              placeholder='Search'
             />
 
           </div>
-          <button className='w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.3]'>
+          <button className='w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1]'>
             <IoIosSearch className='text-white text-xl'/>
             </button>
+         <MdKeyboardVoice className='text-white cursor-pointer ml-2 h-5 w-5 rounded-full hover:bg-[#303030]/[0.6]'/>
         </div>
         {/* */}
         <div className='flex items-center'>
           <div className='hidden md:flex'>
           <div className='flex items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]'>
-            <RiVideoAddLine className='text-white text-xl cursor-pointer'/>
-          </div>
-          <div className='flex items-center justify-center ml-2 h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]'>
-            <FiBell className='text-white text-xl cursor-pointer'/>
-          </div>
-          <div className='flex h-8 overflow-hidden rounded-full md:ml-4'>
-            <img src="https://api.multiavatar.com/stefan.svg" alt='profile'/>
+            <BsThreeDotsVertical className='text-white text-xl cursor-pointer'/>
           </div>
            </div>
+           <button className='flex items-center justify-center text-white bg-white/[0.1]'>
+            <BiUserCircle className='text-white text-xl'/>
+            </button>
         </div>
+        
       </div>
+      
   );
 };
 
